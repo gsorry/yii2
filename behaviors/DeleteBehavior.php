@@ -7,10 +7,22 @@ use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\BaseActiveRecord;
 
+/**
+ * Class DeleteBehavior
+ * @package pine\yii\behaviors
+ */
 class DeleteBehavior extends \yii\base\Behavior
 {
+    /**
+     * @var string
+     */
     public $deletedAttribute = 'deleted';
 
+    /**
+     * Events
+     *
+     * @return array
+     */
     public function events()
     {
         return [
@@ -19,11 +31,19 @@ class DeleteBehavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Event Before Insert
+     */
     public function eventBeforeInsert()
     {
         $this->owner->deleted = 0;
     }
 
+    /**
+     * Event Before Delete
+     *
+     * @param $event
+     */
     public function eventBeforeDelete($event)
     {
         $model = $this->owner;

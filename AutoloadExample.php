@@ -3,10 +3,16 @@
 namespace pine\yii;
 
 /**
- * This is just an example.
+ * Class AutoloadExample
+ * @package pine\yii
  */
 class AutoloadExample extends \yii\base\Widget
 {
+    /**
+     * Run
+     *
+     * @return string
+     */
     public function run()
     {
         return "Hello World!";

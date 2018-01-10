@@ -7,10 +7,22 @@ use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\BaseActiveRecord;
 
+/**
+ * Class DateBehavior
+ * @package pine\yii\behaviors
+ */
 class DateBehavior extends \yii\base\Behavior
 {
+    /**
+     * @var array
+     */
     public $attributes = [];
 
+    /**
+     * Events
+     *
+     * @return array
+     */
     public function events()
     {
         return [
@@ -19,6 +31,9 @@ class DateBehavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Event After Find
+     */
     public function eventAfterFind()
     {
         if (count($this->attributes) > 0) {
@@ -28,6 +43,9 @@ class DateBehavior extends \yii\base\Behavior
         }
     }
 
+    /**
+     * Event Before Validate
+     */
     public function eventBeforeValidate()
     {
         if (count($this->attributes) > 0) {

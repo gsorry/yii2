@@ -6,6 +6,10 @@ use yii\helpers\BaseFileHelper;
 use yii\web\UploadedFile;
 use yii\db\ActiveRecord;
 
+/**
+ * Class FolderHelper
+ * @package pine\yii\helpers
+ */
 class FolderHelper
 {
     /**

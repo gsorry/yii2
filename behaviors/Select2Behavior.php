@@ -8,12 +8,32 @@ use yii\base\Event;
 use yii\db\BaseActiveRecord;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class Select2Behavior
+ * @package pine\yii\behaviors
+ */
 class Select2Behavior extends \yii\base\Behavior
 {
+    /**
+     * @var array
+     */
     public $attributes = [];
+
+    /**
+     * @var string
+     */
     public $from = 'id';
+
+    /**
+     * @var string
+     */
     public $to = 'name';
 
+    /**
+     * Events
+     *
+     * @return array
+     */
     public function events()
     {
         return [
@@ -21,6 +41,9 @@ class Select2Behavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Event After Find
+     */
     public function eventAfterFind()
     {
         if (count($this->attributes) > 0) {

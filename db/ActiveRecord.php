@@ -10,13 +10,28 @@ use yii\db\BaseActiveRecord;
 use pine\yii\behaviors\DeleteBehavior;
 use pine\yii\data\BooleanEnum;
 
+/**
+ * Class ActiveRecord
+ * @package pine\yii\db
+ */
 class ActiveRecord extends \yii\db\ActiveRecord
 {
 
+    /**
+     * @var \common\models\User
+     */
     private $createdBy = NULL;
 
+    /**
+     * @var \common\models\User
+     */
     private $updatedBy = NULL;
 
+    /**
+     * Behaviors
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -44,6 +59,11 @@ class ActiveRecord extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Get Created By
+     *
+     * @return \common\models\User
+     */
     public function getCreatedBy()
     {
         if (NULL === $this->createdBy) {
@@ -52,6 +72,11 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return $this->createdBy;
     }
 
+    /**
+     * Get Updated By
+     *
+     * @return \common\models\User
+     */
     public function getUpdatedBy()
     {
         if (NULL === $this->updatedBy) {
@@ -60,16 +85,32 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return $this->updatedBy;
     }
 
+    /**
+     * Get Deleted Label
+     *
+     * @return null|string
+     */
     public function getDeletedLabel()
     {
         return BooleanEnum::label($this->deleted);
     }
 
+    /**
+     * Get Hidden Label
+     *
+     * @return null|string
+     */
     public function getHiddenLabel()
     {
         return BooleanEnum::label($this->hidden);
     }
 
+    /**
+     * Find One
+     *
+     * @param $condition
+     * @return \pine\yii\db\ActiveRecord
+     */
     public static function findOne($condition)
     {
         return static::findByCondition($condition)->andWhere(static::tableName().'.deleted=0')->one();

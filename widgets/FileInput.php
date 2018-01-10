@@ -17,28 +17,64 @@ use pine\yii\widgets\FileInputAsset;
  */
 class FileInput extends InputWidget
 {
+    /**
+     * @var
+     */
     public $form;
 
+    /**
+     * @var array
+     */
     public $options = ['class' => 'form-group'];
 
+    /**
+     * @var string
+     */
     public $template = "{label}\n{input}\n{hint}\n{error}\n{preview}";
 
+    /**
+     * @var string
+     */
     public $previewTemplate = "{image}\n{delete}";
 
+    /**
+     * @var array
+     */
     public $inputOptions = ['class' => 'form-control'];
 
+    /**
+     * @var array
+     */
     public $errorOptions = ['class' => 'help-block'];
 
+    /**
+     * @var array
+     */
     public $labelOptions = ['class' => 'control-label'];
 
+    /**
+     * @var array
+     */
     public $hintOptions = ['class' => 'hint-block'];
 
+    /**
+     * @var array
+     */
     public $previewOptions = ['class' => 'preview-block'];
 
+    /**
+     * @var array
+     */
     public $selectors = [];
 
+    /**
+     * @var array
+     */
     public $parts = [];
 
+    /**
+     * Init
+     */
     public function init()
     {
         if ($this->form === null || !$this->form) {
@@ -47,6 +83,9 @@ class FileInput extends InputWidget
         parent::init();
     }
 
+    /**
+     * Run
+     */
     public function run()
     {
         if ($this->hasModel()) {
@@ -58,6 +97,12 @@ class FileInput extends InputWidget
         $this->registerClientScript();
     }
 
+    /**
+     * Render Active File Input
+     *
+     * @param null|string|callable $content
+     * @return string
+     */
     public function renderActiveFileInput($content = null)
     {
         if ($content === null) {
@@ -103,6 +148,11 @@ class FileInput extends InputWidget
         return $this->renderBeginActiveFileInput() . "\n" . $content . "\n" . $this->renderEndActiveFileInput();
     }
 
+    /**
+     * Render Preview Active File Input
+     *
+     * @return string
+     */
     public function renderPreviewActiveFileInput()
     {
         $content = '';
@@ -148,6 +198,12 @@ class FileInput extends InputWidget
         return $content;
     }
 
+    /**
+     * Render File Active File Input
+     *
+     * @param $file
+     * @return string
+     */
     public function renderFileActiveFileInput($file)
     {
         $content = '';
@@ -217,6 +273,11 @@ class FileInput extends InputWidget
         return $content;
     }
 
+    /**
+     * Render Begin Active File Input
+     *
+     * @return string
+     */
     public function renderBeginActiveFileInput()
     {
         $inputID = Html::getInputId($this->model, $this->attribute);
@@ -236,11 +297,19 @@ class FileInput extends InputWidget
         return Html::beginTag($tag, $options);
     }
 
+    /**
+     * Render End Active File Input
+     *
+     * @return string
+     */
     public function renderEndActiveFileInput()
     {
         return Html::endTag(isset($this->options['tag']) ? $this->options['tag'] : 'div');
     }
 
+    /**
+     * Register Client Script
+     */
     public function registerClientScript()
     {
 

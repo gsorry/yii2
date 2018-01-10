@@ -11,8 +11,17 @@ use yii\helpers\BaseFileHelper;
 use pine\yii\helpers\FolderHelper;
 use app\modules\file\models\File;
 
+/**
+ * Class FileBehavior
+ * @package pine\yii\behaviors
+ */
 class FileBehavior extends \yii\base\Behavior
 {
+    /**
+     * Events
+     *
+     * @return array
+     */
     public function events()
     {
         return [
@@ -21,6 +30,9 @@ class FileBehavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Event After Save
+     */
     public function eventAfterSave()
     {
         $rules = $this->owner->rules();

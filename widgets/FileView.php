@@ -11,12 +11,19 @@ use yii\base\InvalidConfigException;
 use common\models\File;
 
 /**
- * File View Widget
+ * Class FileView
+ * @package pine\yii\widgets
  */
 class FileView extends InputWidget
 {
+    /**
+     * @var array
+     */
     public $options = ['class' => 'file-view'];
 
+    /**
+     * @var string
+     */
     public $template = "{label}\n{input}\n{hint}\n{error}";
 
 
@@ -37,6 +44,8 @@ class FileView extends InputWidget
     }
 
     /**
+     * Run
+     *
      * @inheritdoc
      */
     public function run()
@@ -45,6 +54,11 @@ class FileView extends InputWidget
          $this->registerClientScript();
     }
 
+    /**
+     * Render File View
+     *
+     * @return string
+     */
     public function renderFileView()
     {
         $content = '';
@@ -98,6 +112,12 @@ class FileView extends InputWidget
         return $this->renderBeginFileView() . "\n" .$content . "\n" . $this->renderEndFileView();
     }
 
+    /**
+     * Render Item File View
+     *
+     * @param $file
+     * @return string
+     */
     public function renderItemFileView($file)
     {
         $content = '';
@@ -143,6 +163,11 @@ class FileView extends InputWidget
         return $content;
     }
 
+    /**
+     * Render Begin File View
+     *
+     * @return mixed
+     */
     public function renderBeginFileView()
     {
         $inputID = Html::getInputId($this->model, $this->attribute);
@@ -155,6 +180,11 @@ class FileView extends InputWidget
         return Html::beginTag('ul', $options);
     }
 
+    /**
+     * Render End File View
+     *
+     * @return mixed
+     */
     public function renderEndFileView()
     {
         return Html::endTag('ul');

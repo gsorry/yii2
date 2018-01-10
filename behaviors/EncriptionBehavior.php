@@ -8,10 +8,22 @@ use yii\base\Event;
 use yii\db\BaseActiveRecord;
 use pine\yii\helpers\CryptHelper;
 
+/**
+ * Class EncriptionBehavior
+ * @package pine\yii\behaviors
+ */
 class EncriptionBehavior extends \yii\base\Behavior
 {
+    /**
+     * @var array
+     */
     public $attributes = [];
 
+    /**
+     * Events
+     *
+     * @return array
+     */
     public function events()
     {
         return [
@@ -20,6 +32,9 @@ class EncriptionBehavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Event After Find
+     */
     public function eventAfterFind()
     {
         if (count($this->attributes) > 0) {
@@ -29,6 +44,9 @@ class EncriptionBehavior extends \yii\base\Behavior
         }
     }
 
+    /**
+     * Event Before Validate
+     */
     public function eventBeforeValidate()
     {
         if (count($this->attributes) > 0) {

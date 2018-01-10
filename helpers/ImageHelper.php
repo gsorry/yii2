@@ -16,8 +16,11 @@ use Yii;
 class ImageHelper
 {
     /**
-     * basePath
-     * uploadsPath
+     * Resize
+     *
+     * @param string $imagePath
+     * @param array $options
+     * @return string
      */
     public static function resize($imagePath, $options=[])
     {
@@ -70,6 +73,15 @@ class ImageHelper
         return '';
     }
 
+    /**
+     * Resize Image To Options
+     *
+     * @param string $imagePath
+     * @param int $newWidth
+     * @param int $newHeight
+     * @param array $options
+     * @return bool|void
+     */
     private static function resizeImageToOptions($imagePath, $newWidth=0, $newHeight=0, $options=[])
     {
         if ($newWidth==0 && $newHeight==0) return; // nothing to resize
@@ -145,6 +157,13 @@ class ImageHelper
         imagedestroy($imageObject);
     }
 
+    /**
+     * Create Rounded
+     *
+     * @param string $imagePath
+     * @param int $radius
+     * @return mixed
+     */
     private static function createRounded($imagePath, $radius)
     {
         $info = getimagesize($imagePath);
